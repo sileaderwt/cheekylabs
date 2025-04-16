@@ -1,25 +1,21 @@
 import React from 'react';
 import './BlockStyles.css';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 function CodeDisplay({ lines, highlightLines }) {
+    const formattedCode = lines.map((line, idx) => {
+        return highlightLines.includes(idx)
+            ? `--> ${line}`
+            : line;
+    }).join('\n');
+
     return (
-        <pre className="bg-dark text-white p-3 rounded" style={{ fontSize: '0.9rem' }}>
-            {lines.map((line, idx) => (
-                <div
-                    key={idx}
-                    style={{
-                        backgroundColor: highlightLines.includes(idx) ? '#333' : 'transparent',
-                        padding: '2px 0'
-                    }}
-                >
-                    <code>
-                        <span style={{ color: 'gray' }}>{String(idx + 1).padStart(2, '0')}: </span>
-                        {line}
-                    </code>
-                </div>
-            ))}
-        </pre>
+        <SyntaxHighlighter language="javascript" style={solarizedlight}>
+            {formattedCode}
+        </SyntaxHighlighter>
     );
 }
+
 
 export default CodeDisplay;

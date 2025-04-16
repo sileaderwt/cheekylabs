@@ -5,7 +5,6 @@ import StepControls from './StepControls';
 import CodeDisplay from './CodeDisplay';
 
 const inputArray = [10, 9, 2, 5, 3, 7, 101, 18];
-
 const lisCodeLines = [
     "const dp = new Array(inputArray.length).fill(1);",
     "for (let i = 0; i < inputArray.length; i++) {",
@@ -23,7 +22,6 @@ function LISVisualizer() {
     const [steps, setSteps] = useState([]);
     const [currentStep, setCurrentStep] = useState(0);
 
-    // Prepare the step-by-step simulation
     useEffect(() => {
         const stepList = [];
         const dp = new Array(inputArray.length).fill(1);
@@ -38,7 +36,7 @@ function LISVisualizer() {
                         j,
                         dp: [...dp],
                         explanation: `nums[${i}] (${inputArray[i]}) > nums[${j}] (${inputArray[j]}), so dp[${i}] = ${dp[i]}`,
-                        codeLines: [2, 3, 4]
+                        codeLines: [2, 3, 4] // Lines involved in this step
                     });
                 } else {
                     stepList.push({
@@ -55,13 +53,17 @@ function LISVisualizer() {
         setSteps(stepList);
     }, []);
 
-    const step = steps[currentStep] || { i: -1, j: -1, dp: [], explanation: '' };
+    const step = steps[currentStep] || { i: -1, j: -1, dp: [], explanation: '', codeLines: [] };
 
     return (
         <div className="container mt-4">
             <h2>Longest Increasing Subsequence Visualizer</h2>
             <ArrayDisplay array={inputArray} highlightI={step.i} highlightJ={step.j} />
             <DPDisplay dp={step.dp} currentIndex={step.i} />
+            <CodeDisplay
+                lines={lisCodeLines}
+                highlightLines={step.codeLines}
+            />
             <div className="mt-3">
                 <p><strong>Step Explanation:</strong> {step.explanation}</p>
                 <StepControls
@@ -71,10 +73,6 @@ function LISVisualizer() {
                     onBack={() => setCurrentStep((s) => Math.max(s - 1, 0))}
                 />
             </div>
-            <CodeDisplay
-                lines={lisCodeLines}
-                highlightLines={step.codeLines || []}
-            />
         </div>
     );
 }
