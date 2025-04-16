@@ -1,0 +1,15 @@
+.block {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.block.small {
+    height: 35px;
+    line-height: 35px;
+    font-size: 0.9rem;
+}

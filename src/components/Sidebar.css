@@ -1,0 +1,22 @@
+.sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100%;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+}
+
+.sidebar.show {
+    transform: translateX(0);
+}
+
+.sidebar.hide {
+    transform: translateX(-100%);
+}

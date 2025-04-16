@@ -1,0 +1,33 @@
+/* Code block container */
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.95rem;
+}
+
+/* Background and padding for the code block */
+pre {
+    background-color: #1e1e1e;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Highlighting the current code line */
+pre .highlight-line {
+    background-color: #444;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* Line number styling */
+pre code .line-number {
+    color: #888;
+    padding-right: 10px;
+    width: 40px;
+    text-align: right;
+}
